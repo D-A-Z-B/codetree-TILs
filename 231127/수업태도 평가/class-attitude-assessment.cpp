@@ -34,24 +34,35 @@ int main()
     sort(sortedMap.begin(), sortedMap.end(), [](const auto& a, const auto& b) {
         return a.second < b.second;
         });
+    bool isTie = all_of(sortedMap.begin(), sortedMap.end(), [&](const auto& entry) {
+        return entry.second == sortedMap[0].second;
+        });
 
-    int smallestValue = sortedMap[0].second;
-    int secondSmallestValue = -1;
-
-    for (const auto& entry : sortedMap) {
-        if (entry.second > smallestValue) {
-            secondSmallestValue = entry.second;
-            break;
-        }
+    if (isTie) {
+        cout << "tie" << endl;
     }
+    else {
+        int smallestValue = sortedMap[0].second;
+        int secondSmallestValue = -1;
 
-    if (secondSmallestValue != -1) {
         for (const auto& entry : sortedMap) {
-            if (entry.second == secondSmallestValue) {
-                cout << entry.first << endl;
+            if (entry.second > smallestValue) {
+                secondSmallestValue = entry.second;
                 break;
             }
         }
+
+        if (secondSmallestValue != -1) {
+            for (const auto& entry : sortedMap) {
+                if (entry.second == secondSmallestValue) {
+                    cout << entry.first << endl;
+                    break;
+                }
+            }
+        }
+        else {
+        }
     }
+
     return 0;
 }
