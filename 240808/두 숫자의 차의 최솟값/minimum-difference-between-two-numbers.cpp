@@ -12,7 +12,7 @@ int main() {
     int answer = 99;
 
     for (int i = 1; i < n; ++i) {
-        int temp = abs(arr[i] - arr[i - 1]);
+        int temp = arr[i] - arr[i - 1];
         if (temp < answer) {
             answer = temp;
         }
